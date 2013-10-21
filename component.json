@@ -1,0 +1,11 @@
+{
+  "name": "TaskProject",
+  "version": "1.0.0",
+  "dependencies": {
+    "jquery": "~1.9.0",
+    "backbone": null,
+    "underscore": null,
+    "requirejs": null,
+    "markdown": null
+  }
+}

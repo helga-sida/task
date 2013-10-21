@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+	<title>Task</title>
+</head>
+<body>
+
+	<div class="container">
+		<h1>Редактор новостей</h1>
+		<div id="marckdown-news">
+			<p>
+				<h2>Заголовок новости</h2>
+			</p>
+			<p>
+				<ul>
+					<li>Элемент списка 001"</li>
+					<li>Элемент списка 002"</li>
+					<li>Элемент списка 003"</li>
+					<li>Элемент списка 004"</li>
+				</ul>	
+			</p>
+			<p>
+				<a href="#">Read more</a>
+			</p>
+		</div>
+		<button id="redact-news">Редактировать</button>
+	</div>
+
+	<script  src="scripts/components/requirejs/require.js"></script>
+	<script type="text/javascript">
+		(function() {
+			requirejs.config({
+				baseUrl: 'scripts/components',
+			    paths: {
+			        jquery: 'jquery/jquery.min',
+			        underscore: 'underscore/underscore-min',
+			        backbone: 'backbone/backbone-min'
+			    },
+			    shim: {
+			        backbone: {
+			            deps: ['underscore', 'jquery'],
+			            exports: 'Backbone'
+			        },
+			        underscore: {
+			            exports: '_'
+			        },
+			    }
+			});
+
+			
+			require(['jquery', 'backbone'],
+				function   ($, Backbone) {
+					NewsView = Backbone.View.extend({
+						el: $('.container'),
+
+					    initialize: function () {
+					    },
+
+					    events: {
+					        "click #redact-news": "redactNews" 
+					    },
+
+					    redactNews: function () {
+					    	alert(1)
+					    }
+
+					})
+					var news_view = new NewsView;
+				});
+			} ());
+		
+	</script>
+</body>
+</html>
