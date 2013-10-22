@@ -6,6 +6,7 @@
     "backbone": null,
     "underscore": null,
     "requirejs": null,
-    "markdown": null
+    "markdown": null,
+    "codemirror": null
   }
 }
