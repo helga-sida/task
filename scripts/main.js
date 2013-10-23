@@ -42,28 +42,42 @@
 
 					    redactNews: function () {
 					    	var self = this;
-					    	if (self.hasNotEditor) {
 
-					    		var editorSettings = {
+					    	$('#news-container')
+									.addClass('news-to-right')
+									.animate({'left': '600px'}, 200, function () {
+										self.enabelEditor();
+										
+									});
+
+					    	
+					    	$(document).on('saveChanges', function (event, html) {
+					    		$('#result')
+					    			.empty()
+					    			.html(html);
+					    		$('#news-container').animate({'left': '15px'}, 200);
+					    	});
+					    	
+					    },
+
+					    enabelEditor: function () {
+					    	var self = this;
+
+					    	if (self.hasNotEditor) {
+								var editorSettings = {
 					    			'editorId': 'code',
 					    			'resultId': 'result-id',
 					    			'editorContainer': 'editor',
-					    			'buttonResult': 'button',
-					    			'self': self
-					    		}		
+								    'buttonResult': 'button'
+								}		
 
 					    		$(document).trigger('createEditor', editorSettings);
 					    		self.hasNotEditor = false;
 
 					    	} else {
-					    		$(document).trigger('showEditor');
+								$(document).trigger('showEditor');
 
-					    	}
-
-					    	self.bind('saveChanges', function (html) {
-					    		$('#result').empty().html(html);
-					    	});
-					    	
+							}
 					    },
 
 					    hasNotEditor: true
@@ -71,7 +85,7 @@
 					});
 
 
-					var MarkdownEditor = function (editorId, resultId, editorContainer, buttonResult, self) {
+					var MarkdownEditor = function (editorId, resultId, editorContainer, buttonResult) {
 
 						var that = this;
 
@@ -84,13 +98,16 @@
 
 							$(document)
 								.on('click', '#'+buttonResult, function () {
-									that.hideEditor();
-									self.trigger('saveChanges', $('#'+resultId).html());
+									$('#' + editorContainer).fadeOut(200, function () {
+										var html = $('#'+resultId).html();
+										$(document).trigger('saveChanges', html);
+
+									});
 
 								})
 								.on('showEditor', function () {
-									
-									$('#' + editorContainer).show();
+									$('#' + editorContainer).fadeIn(200);
+
 								});
 
 						}
@@ -119,7 +136,10 @@
 						}
 
 						that.createEditorSrtruct = function () {
-							var divResult = $('<div>', { 'id': resultId});
+							var divResult = $('<div>', { 
+												'id': resultId,
+												'class': 'md-preview'
+											});
 							var buttonSave = $('<button>', { 
 												'id': buttonResult,
 												'text': 'Save'
@@ -137,11 +157,6 @@
 							$('#'+resultId).html(newMarkup);
 
 						}
-
-						that.hideEditor = function () {
-							$('#' + editorContainer).hide();
-						}
-
 						
 					};
 
@@ -152,8 +167,7 @@
 											editorSettins.editorId, 
 											editorSettins.resultId, 
 											editorSettins.editorContainer, 
-											editorSettins.buttonResult, 
-											editorSettins.self
+											editorSettins.buttonResult
 										);
 					    editor.init();
 					})

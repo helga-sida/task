@@ -8,8 +8,5 @@
 	"latedef": false,
 	"newcap": true,
 	"undef": true,
-	"trailing": true,
-	"globals": {
-		"Modernizr": true
-	}
+	"trailing": true
 }

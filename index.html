@@ -3,45 +3,35 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" href="/scripts/components/codemirror/lib/codemirror.css">
-
-	<style type="text/css">
-		.markdown-value {
-			display: none;
-		}
-
-		.editor-container,
-		.news  {
-			float: right;
-			width: 535px;
-			height: 500px;
-		}
-
-	</style>
+	<link rel="stylesheet" href="scripts/components/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="css/main.css">
 
 	<title>Task</title>
 </head>
 <body>
 
-	<div class="container">
+	<div class="container">	
 		<h1>Редактор новостей</h1>
-		<div id="result" class="news">
-			<h2>Заголовок новости</h2>
-			<ul>
-				<li>Элемент списка 001</li>
-				<li>Элемент списка 002</li>
-				<li>Элемент списка 003</li>
-				<li>Элемент списка 004</li>
-			</ul>	
-			<p>
-				<a href="#">Read more</a>
-			</p>
-		</div>
-
+		<div class="news" id="news-container">
 		
-		<div class="clearfix">
-			<button id="redact-news">Редактировать</button>
+			<div id="result" class="news">
+				<h2>Заголовок новости</h2>
+				<ul>
+					<li>Элемент списка 001</li>
+					<li>Элемент списка 002</li>
+					<li>Элемент списка 003</li>
+					<li>Элемент списка 004</li>
+				</ul>	
+				<p>
+					<a href="#">Read more</a>
+				</p>
+			</div>
+
+			<div>
+				<button id="redact-news">Редактировать</button>
+			</div>	
 		</div>
+		
 
 		<div id="editor" class="editor-container">
 		<textarea name="code" id="code" class="markdown-value">##Заголовок новости
@@ -53,7 +43,7 @@
 
 [Read more](#)</textarea>
 
-	</div>
+		</div>
 
 	</div>
 
